@@ -1601,8 +1601,16 @@ h4 {
         flex-direction: column;
     }
 
-    .features-grid {
+    .features-grid, .software-grid, .benefits-grid {
         grid-template-columns: 1fr;
+    }
+
+    .section-heading-large {
+        font-size: clamp(2.5rem, 8vw, 4rem);
+    }
+
+    .hero-title {
+        font-size: clamp(2.5rem, 8vw, 4rem);
     }
 
     .cta-bottom {
