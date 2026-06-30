@@ -100,3 +100,71 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
+// --- Multi-Step Form Logic ---
+window.nextStep = function(currentStep) {
+    const currentStepEl = document.getElementById(`step-${currentStep}`);
+    if (!currentStepEl) return;
+
+    // Validate required fields
+    const requiredInputs = currentStepEl.querySelectorAll('[required]');
+    let isValid = true;
+    
+    requiredInputs.forEach(input => {
+        if (!input.value.trim() || (input.type === 'email' && !input.value.includes('@'))) {
+            isValid = false;
+            input.style.borderColor = 'red';
+        } else {
+            input.style.borderColor = 'rgba(255, 255, 255, 0.15)';
+        }
+    });
+
+    if (!isValid) return;
+
+    // Hide current step, show next
+    currentStepEl.style.display = 'none';
+    currentStepEl.classList.remove('active');
+    
+    const nextStepEl = document.getElementById(`step-${currentStep + 1}`);
+    if (nextStepEl) {
+        nextStepEl.style.display = 'block';
+        setTimeout(() => nextStepEl.classList.add('active'), 10);
+        updateProgressBar(currentStep + 1);
+    }
+};
+
+window.prevStep = function(currentStep) {
+    const currentStepEl = document.getElementById(`step-${currentStep}`);
+    if (!currentStepEl) return;
+    
+    currentStepEl.style.display = 'none';
+    currentStepEl.classList.remove('active');
+    
+    const prevStepEl = document.getElementById(`step-${currentStep - 1}`);
+    if (prevStepEl) {
+        prevStepEl.style.display = 'block';
+        setTimeout(() => prevStepEl.classList.add('active'), 10);
+        updateProgressBar(currentStep - 1);
+    }
+};
+
+function updateProgressBar(stepIndex) {
+    const steps = document.querySelectorAll('.form-progress .step');
+    const lines = document.querySelectorAll('.form-progress .step-line');
+    
+    steps.forEach((step, idx) => {
+        if (idx < stepIndex) {
+            step.classList.add('active');
+        } else {
+            step.classList.remove('active');
+        }
+    });
+    
+    lines.forEach((line, idx) => {
+        if (idx < stepIndex - 1) {
+            line.classList.add('active-line');
+        } else {
+            line.classList.remove('active-line');
+        }
+    });
+}

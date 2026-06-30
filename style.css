@@ -1815,3 +1815,239 @@ h4 {
         right: 1rem;
     }
 }
+
+/* ==========================================================================
+   Contact Page
+   ========================================================================== */
+.contact-hero {
+    margin-bottom: 2rem;
+}
+
+.contact-heading {
+    font-size: clamp(3.5rem, 8vw, 6rem);
+    margin-bottom: 1rem;
+    font-weight: 800;
+    color: var(--text-primary);
+}
+
+.contact-subtitle {
+    max-width: 700px;
+    margin: 0 auto;
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+.contact-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 4rem;
+    align-items: flex-start;
+}
+
+.contact-info-col h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.contact-email {
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+    font-size: 1.05rem;
+}
+
+.contact-email a {
+    color: #fff;
+    transition: color 0.3s ease;
+}
+
+.contact-email a:hover {
+    color: var(--accent-blue);
+}
+
+.contact-socials {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.contact-socials a {
+    color: var(--text-secondary);
+    transition: all 0.3s ease;
+}
+
+.contact-socials a:hover {
+    color: var(--text-primary);
+    transform: translateY(-2px);
+}
+
+.form-card {
+    background: #141414;
+    border-radius: 20px;
+    padding: 3rem;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.form-progress {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 3rem;
+}
+
+.step {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.step-num {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+.step.active .step-num {
+    background: var(--accent-blue);
+    color: #fff;
+}
+
+.step-label {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    font-weight: 600;
+}
+
+.step.active .step-label {
+    color: var(--text-primary);
+}
+
+.step-line {
+    flex-grow: 1;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    margin: 0 1rem;
+}
+
+.active-line {
+    background: var(--accent-blue);
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.form-group label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.form-group .optional {
+    color: rgba(255, 255, 255, 0.3);
+    text-transform: none;
+    font-weight: 500;
+    font-size: 0.75rem;
+    margin-left: 0.25rem;
+}
+
+.form-group input {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    padding: 1rem 1.2rem;
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-group input::placeholder {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--accent-blue);
+    background: rgba(0, 163, 255, 0.05);
+}
+
+.form-actions {
+    margin-top: 3rem;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.btn-next {
+    background: var(--accent-blue);
+    color: #fff;
+    font-weight: 700;
+    padding: 0.8rem 2rem;
+    border-radius: 100px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+}
+
+.btn-next:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 163, 255, 0.4);
+    background: #0088cc;
+}
+
+@media (max-width: 992px) {
+    .contact-container {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+    .form-progress {
+        gap: 0.5rem;
+    }
+    .step-line {
+        display: none;
+    }
+    .step-label {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .form-card {
+        padding: 1.5rem;
+    }
+    .contact-heading {
+        font-size: 2.5rem;
+    }
+    .step {
+        flex-direction: column;
+        gap: 0.25rem;
+        text-align: center;
+    }
+    .form-progress {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+}
