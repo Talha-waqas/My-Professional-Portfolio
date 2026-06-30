@@ -168,3 +168,55 @@ function updateProgressBar(stepIndex) {
         }
     });
 }
+
+// --- Form Submission via AJAX ---
+const contactForm = document.getElementById('contactForm');
+if (contactForm) {
+    contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const submitBtn = contactForm.querySelector('button[type="submit"]');
+        const originalBtnText = submitBtn.innerText;
+        submitBtn.innerText = 'Submitting...';
+        submitBtn.disabled = true;
+
+        const formData = new FormData(contactForm);
+        
+        fetch("https://formsubmit.co/ajax/talhawaqasofficial@gmail.com", {
+            method: "POST",
+            headers: { 
+                'Accept': 'application/json'
+            },
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success === 'true' || data.success === true || data.success) {
+                alert("Thank you! Your message has been sent successfully.");
+                contactForm.reset();
+                
+                // Reset form steps
+                document.querySelectorAll('.form-step').forEach(step => {
+                    step.style.display = 'none';
+                    step.classList.remove('active');
+                });
+                const step1 = document.getElementById('step-1');
+                if (step1) {
+                    step1.style.display = 'block';
+                    setTimeout(() => step1.classList.add('active'), 10);
+                }
+                updateProgressBar(1);
+            } else {
+                alert("Oops! Something went wrong. Please try again.");
+            }
+        })
+        .catch(error => {
+            alert("Oops! Something went wrong. Please try again.");
+            console.error(error);
+        })
+        .finally(() => {
+            submitBtn.innerText = originalBtnText;
+            submitBtn.disabled = false;
+        });
+    });
+}
